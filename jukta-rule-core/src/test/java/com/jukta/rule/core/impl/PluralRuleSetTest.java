@@ -6,6 +6,8 @@ import com.jukta.rule.core.predicate.AnyPredicate;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.ParseException;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -26,7 +28,7 @@ public class PluralRuleSetTest {
     }
 
     @Test
-    public void factoryChain() {
+    public void factoryChain() throws ParseException {
 
         RuleBuilder.rule("", ruleSet)
                 .addPredicate("f1", new AnyPredicate())

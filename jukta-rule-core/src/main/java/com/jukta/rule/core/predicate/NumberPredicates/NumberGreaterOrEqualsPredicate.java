@@ -2,17 +2,18 @@ package com.jukta.rule.core.predicate.NumberPredicates;
 
 import com.jukta.rule.core.Predicate;
 
-public class NumberGreaterOrEqualsPredicate implements Predicate<String> {
+public class NumberGreaterOrEqualsPredicate extends NumberPredicate {
 
-    private String value;
+    private Number value;
 
-    public NumberGreaterOrEqualsPredicate(String value) {
+    public NumberGreaterOrEqualsPredicate(Number value) {
         this.value = value;
     }
 
     @Override
-    public boolean eval(String s) {
-        return Integer.parseInt(value) <= Integer.parseInt(s);
+    public boolean eval(Number s)
+    {
+        return compare(value, s) >= 0 ;
     }
 
     @Override

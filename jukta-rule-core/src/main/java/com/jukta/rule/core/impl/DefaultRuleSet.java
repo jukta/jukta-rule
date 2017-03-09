@@ -5,6 +5,7 @@ import com.jukta.rule.core.ResultFactory;
 import com.jukta.rule.core.RuleSet;
 import com.jukta.rule.core.ValueExtractor;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -57,7 +58,7 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
     }
 
     @Override
-    public O eval(I i) {
+    public O eval(I i) throws ParseException {
         List<Rule<I, O>> res = filter(i);
         res = filterByRank(res);
         if (res.size() > 1) {
@@ -94,7 +95,7 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
         return res;
     }
 
-    protected List<Rule<I, O>> filter(I i) {
+    protected List<Rule<I, O>> filter(I i) throws ParseException {
         int size = extractors.size();
         List<Rule<I, O>> r = new ArrayList<>(rules);
         for (int j = 0; j < size; j++) {
