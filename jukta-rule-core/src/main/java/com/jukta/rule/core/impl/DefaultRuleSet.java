@@ -73,7 +73,7 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
     }
 
     @Override
-    public O eval(I i) throws ParseException {
+    public O eval(I i) {
         List<Rule<I, O>> res = filter(i);
         res = filterByRank(res);
         if (res.size() > 1) {
@@ -114,7 +114,7 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
         return res;
     }
 
-    protected List<Rule<I, O>> filter(I i) throws ParseException {
+    protected List<Rule<I, O>> filter(I i) {
         int size = extractors.size();
         List<Rule<I, O>> r = new ArrayList<>(rules);
         for (int j = 0; j < size; j++) {

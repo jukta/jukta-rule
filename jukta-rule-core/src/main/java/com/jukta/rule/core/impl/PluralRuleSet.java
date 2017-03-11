@@ -17,7 +17,7 @@ public class PluralRuleSet<I, O> extends DefaultRuleSet<I, O> {
     }
 
     @Override
-    public O eval(I i) throws ParseException {
+    public O eval(I i) {
         List<Rule<I, O>> res = filter(i);
         O result =  getInitialFactory().create(i, null);
         for (Rule<I, O> rule : res) {
