@@ -11,10 +11,16 @@ import java.util.List;
 public class Rule<I, O> {
     private List<Predicate> predicates;
     private ResultFactory<I, O> resultFactory;
+    private String ruleName;
 
-    public Rule(List<Predicate> predicates, ResultFactory<I, O> resultFactory) {
+    public Rule(String ruleName, List<Predicate> predicates, ResultFactory<I, O> resultFactory) {
+        this.ruleName = ruleName;
         this.predicates = predicates;
         this.resultFactory = resultFactory;
+    }
+
+    public String getRuleName() {
+        return ruleName;
     }
 
     public List<Predicate> getPredicates() {
@@ -23,5 +29,10 @@ public class Rule<I, O> {
 
     public ResultFactory<I, O> getResultFactory() {
         return resultFactory;
+    }
+
+    @Override
+    public String toString() {
+        return ruleName;
     }
 }
