@@ -1,5 +1,6 @@
 package com.jukta.rule.core.impl;
 
+import com.jukta.rule.core.ValueExtractor;
 import com.jukta.rule.core.builder.RuleBuilder;
 import com.jukta.rule.core.builder.RuleSetBuilder;
 import com.jukta.rule.core.predicate.AnyPredicate;
@@ -20,8 +21,28 @@ public class DefaultRuleSetTest {
     public void setup() {
         ruleSet = RuleSetBuilder
                 .singleRuleSet("test", String[].class, String.class)
-                .addField("f1", o -> o[0], 1)
-                .addField("f2", o -> o[1], 0)
+                .addField("f1", new ValueExtractor<String[], String>() {
+                    @Override
+                    public String extract(String[] strings) {
+                        return strings[0];
+                    }
+
+                    @Override
+                    public Class<String> getValueType() {
+                        return String.class;
+                    }
+                }, 1)
+                .addField("f2", new ValueExtractor<String[], String>() {
+                    @Override
+                    public String extract(String[] strings) {
+                        return strings[1];
+                    }
+
+                    @Override
+                    public Class<String> getValueType() {
+                        return String.class;
+                    }
+                }, 0)
                 .build();
     }
 

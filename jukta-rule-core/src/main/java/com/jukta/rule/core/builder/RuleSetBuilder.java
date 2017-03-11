@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class RuleSetBuilder<I, O> {
     private String name;
-    private List<ValueExtractor<I>> extractors;
+    private List<ValueExtractor<I, ?>> extractors;
     private Class<I> inType;
     private Class<O> outType;
     private ResultFactory<I, O> initialFactory;
@@ -29,7 +29,7 @@ public class RuleSetBuilder<I, O> {
         this.outType = outType;
     }
 
-    public RuleSetBuilder<I, O> addField(String fieldName, ValueExtractor<I> valueExtractor, int rank) {
+    public RuleSetBuilder<I, O> addField(String fieldName, ValueExtractor<I, ?> valueExtractor, int rank) {
         extractors.add(valueExtractor);
         ranks.add(rank);
         return this;

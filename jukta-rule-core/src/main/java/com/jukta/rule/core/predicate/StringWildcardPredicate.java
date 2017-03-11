@@ -59,4 +59,10 @@ public class StringWildcardPredicate implements Predicate<String> {
     public int getRank() {
         return 1;
     }
+
+    @Override
+    public Class<String> getType() {
+        return String.class;
+    }
+
 }

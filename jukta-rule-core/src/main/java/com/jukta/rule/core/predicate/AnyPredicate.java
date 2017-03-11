@@ -5,10 +5,10 @@ import com.jukta.rule.core.Predicate;
 /**
  * @since 1.0
  */
-public class AnyPredicate implements Predicate<String> {
+public class AnyPredicate implements Predicate {
 
     @Override
-    public boolean eval(String s) {
+    public boolean eval(Object s) {
         return true;
     }
 

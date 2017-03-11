@@ -18,6 +18,7 @@ public class RuleBuilder<I, O> {
     private Class<I> inType;
     private Class<O> outType;
     private DefaultRuleSet<I, O> ruleSet;
+    private int predicateCount = 0;
 
     private RuleBuilder(String name, Class<I> inType, Class<O> outType) {
         this.name = name;
@@ -32,6 +33,7 @@ public class RuleBuilder<I, O> {
 
     public RuleBuilder<I, O> addPredicate(String fieldName, Predicate predicate) {
         predicates.add(predicate);
+        predicateCount++;
         return this;
     }
 
@@ -41,7 +43,11 @@ public class RuleBuilder<I, O> {
     }
 
     public Rule<I, O> build() {
-        Rule<I, O> r = new Rule<>(predicates, resultFactory);
+        return build(ruleSet);
+    }
+
+    public Rule<I, O> build(DefaultRuleSet<I, O> ruleSet) {
+        Rule<I, O> r = new Rule<>(name, predicates, resultFactory);
         if (ruleSet != null) {
             ruleSet.addRule(r);
         }

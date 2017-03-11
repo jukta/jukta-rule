@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class PluralRuleSet<I, O> extends DefaultRuleSet<I, O> {
 
-    public PluralRuleSet(List<ValueExtractor<I>> extractors, List<Integer> ranks, ResultFactory<I, O> initialFactory, Class<I> inType, Class<O> outType) {
+    public PluralRuleSet(List<ValueExtractor<I, ?>> extractors, List<Integer> ranks, ResultFactory<I, O> initialFactory, Class<I> inType, Class<O> outType) {
         super(extractors, ranks, inType, outType);
         setInitialFactory(initialFactory);
     }

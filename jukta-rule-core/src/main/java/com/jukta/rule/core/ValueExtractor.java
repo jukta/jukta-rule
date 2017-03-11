@@ -3,8 +3,10 @@ package com.jukta.rule.core;
 /**
  * @since 1.0
  */
-public interface ValueExtractor<T> {
+public interface ValueExtractor<T, V> {
 
-    Object extract(T t);
+    V extract(T t);
+
+    Class<V> getValueType();
 
 }

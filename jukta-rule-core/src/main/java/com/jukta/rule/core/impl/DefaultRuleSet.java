@@ -8,20 +8,21 @@ import com.jukta.rule.core.ValueExtractor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * @since 1.0
  */
 public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
 
-    private List<ValueExtractor<I>> extractors;
+    private List<ValueExtractor<I, ?>> extractors;
     private List<Rule<I, O>> rules;
     private Class<I> inType;
     private Class<O> outType;
     private ResultFactory<I, O> initialFactory;
     private List<Integer> ranks;
 
-    public DefaultRuleSet(List<ValueExtractor<I>> extractors, List<Integer> ranks, Class<I> inType, Class<O> outType) {
+    public DefaultRuleSet(List<ValueExtractor<I, ?>> extractors, List<Integer> ranks, Class<I> inType, Class<O> outType) {
         if (extractors.size() != ranks.size()) {
             throw new IllegalStateException("Number of extractors must be the same as number of ranks");
         }
@@ -40,7 +41,21 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
         return outType;
     }
 
+    public List<ValueExtractor<I, ?>> getExtractors() {
+        return extractors;
+    }
+
     public void addRule(Rule<I, O> rule) {
+        List<Predicate> p = rule.getPredicates();
+        if (extractors.size() != p.size()) {
+            throw new IllegalStateException("Unexpected number of predicates, expected " + extractors.size() + " found " + p.size());
+        }
+        for (int i = 0; i < extractors.size(); i++) {
+            Predicate pr = rule.getPredicates().get(i);
+            if (pr.getType() != null && !extractors.get(i).getValueType().equals(pr.getType())) {
+                throw new IllegalArgumentException("Unexpected predicate type, expected " + extractors.get(i).getValueType() + " found " + pr.getType());
+            }
+        }
         rules.add(rule);
     }
 
@@ -61,7 +76,11 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
         List<Rule<I, O>> res = filter(i);
         res = filterByRank(res);
         if (res.size() > 1) {
-            throw new RuntimeException("Ambiguous rules");
+            StringJoiner joiner = new StringJoiner(",");
+            for (Rule<I, O> r : res) {
+                joiner.add(r.toString());
+            }
+            throw new AmbiguousRulesException("Ambiguous rules: " + joiner.toString());
         }
         if (res.size() != 1) {
             return null;
@@ -98,7 +117,7 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
         int size = extractors.size();
         List<Rule<I, O>> r = new ArrayList<>(rules);
         for (int j = 0; j < size; j++) {
-            ValueExtractor<I> extractor = extractors.get(j);
+            ValueExtractor<I, ?> extractor = extractors.get(j);
             Object o = extractor.extract(i);
 
             for (Iterator<Rule<I, O>> it = r.iterator(); it.hasNext(); ) {

@@ -9,4 +9,8 @@ public interface Predicate<T> {
 
     int getRank();
 
+    default Class<T> getType() {
+        return null;
+    }
+
 }
