@@ -1,16 +1,12 @@
 package com.jukta.rule.core.impl;
 
 import com.jukta.rule.core.ValueExtractor;
-import com.jukta.rule.core.builder.NumberPredicateBuilder;
 import com.jukta.rule.core.builder.RuleBuilder;
 import com.jukta.rule.core.builder.RuleSetBuilder;
 import com.jukta.rule.core.predicate.AnyPredicate;
 import com.jukta.rule.core.predicate.StringPredicate;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.text.NumberFormat;
-import java.text.ParseException;
 
 import static org.junit.Assert.assertEquals;
 
