@@ -2,6 +2,7 @@ package com.jukta.rule.core.predicate;
 
 import java.util.Comparator;
 
+
 public class NumberComparator implements Comparator<Number> {
     @Override
     public int compare(Number n1, Number n2) {
