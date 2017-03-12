@@ -5,7 +5,6 @@ import com.jukta.rule.core.ResultFactory;
 import com.jukta.rule.core.RuleSet;
 import com.jukta.rule.core.ValueExtractor;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

@@ -1,6 +1,5 @@
 package com.jukta.rule.core;
 
-
 /**
  * @since 1.0
  */
