@@ -6,11 +6,8 @@ import com.jukta.rule.core.predicate.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
 
-public class NumberPredicateBuilder<T extends Number> implements PredicateBuilder<T> {
+public class NumberPredicateBuilder<T extends Number> implements PredicateBuilder {
 
     private Class<T> type;
     private T epsilon;
@@ -25,7 +22,7 @@ public class NumberPredicateBuilder<T extends Number> implements PredicateBuilde
     }
 
     @Override
-    public Predicate<T> predicate(String exp) {
+    public Predicate predicate(String exp) {
         exp = exp.trim();
 
         if ("*".equals(exp)) return new AnyPredicate();

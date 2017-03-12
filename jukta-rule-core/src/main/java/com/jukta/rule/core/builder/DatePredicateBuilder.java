@@ -12,14 +12,14 @@ import java.util.Date;
 /**
  * @since 1.0
  */
-public class DatePredicateBuilder implements PredicateBuilder<Date> {
+public class DatePredicateBuilder implements PredicateBuilder {
     private DateFormat dateFormat;
 
     private DatePredicateBuilder(DateFormat dateFormat) {
         this.dateFormat = dateFormat;
     }
 
-    public Predicate<Date> predicate(String exp) {
+    public Predicate predicate(String exp) {
         exp = exp.trim();
 
         if ("*".equals(exp)) return new AnyPredicate();

@@ -6,9 +6,9 @@ import com.jukta.rule.core.predicate.*;
 /**
  * @since 1.0
  */
-public class StringPredicateBuilder implements PredicateBuilder<String> {
+public class StringPredicateBuilder implements PredicateBuilder {
 
-    public Predicate<String> predicate(String exp) {
+    public Predicate predicate(String exp) {
         exp = exp.trim();
         if (exp.equals("*")) {
             return new AnyPredicate();
