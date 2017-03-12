@@ -1,6 +1,5 @@
 package com.jukta.rule.core.impl;
 
-import com.jukta.rule.core.ResultFactory;
 import com.jukta.rule.core.ValueExtractor;
 import com.jukta.rule.core.builder.RuleBuilder;
 import com.jukta.rule.core.builder.RuleSetBuilder;
@@ -48,7 +47,7 @@ public class PluralRuleSetTest {
     }
 
     @Test
-    public void factoryChain() {
+    public void factoryChain(){
 
         RuleBuilder.rule("", ruleSet)
                 .addPredicate("f1", new AnyPredicate())
