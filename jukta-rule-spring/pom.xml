@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>jukta-rule-spring</artifactId>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.jukta</groupId>
+        <artifactId>jukta-rule</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../</relativePath>
+    </parent>
+
+    <properties>
+        <spring.version>4.3.7.RELEASE</spring.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jukta</groupId>
+            <artifactId>jukta-rule-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+        </plugins>
+    </build>
+
+</project>

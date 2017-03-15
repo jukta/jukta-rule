@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<xsd:schema xmlns="http://jukta.com/schema/rule"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://jukta.com/schema/rule"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+
+    <xsd:element name="extractor">
+        <xsd:complexType>
+            <xsd:attribute name="exp" use="required" type="xsd:string"/>
+            <xsd:attribute name="type" use="required" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="singleRule">
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element ref="extractor"/>
+            </xsd:choice>
+            <xsd:attribute name="id" type="xsd:ID"/>
+            <!--<xsd:attribute name="name" use="required" type="xsd:string"/>-->
+            <xsd:attribute name="inClass" use="required" type="xsd:string"/>
+            <xsd:attribute name="outClass" use="required" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
