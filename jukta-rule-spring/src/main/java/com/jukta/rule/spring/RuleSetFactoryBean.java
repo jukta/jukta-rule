@@ -1,8 +1,8 @@
 package com.jukta.rule.spring;
 
-import com.jukta.rule.core.ValueExtractor;
 import com.jukta.rule.core.builder.RuleSetBuilder;
 import com.jukta.rule.core.impl.DefaultRuleSet;
+import com.jukta.rule.core.extractor.JuelValueExtractor;
 import org.springframework.beans.factory.FactoryBean;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class RuleSetFactoryBean implements FactoryBean<DefaultRuleSet> {
     private Class inClass;
     private Class outClass;
 
-    private List<ValueExtractor> extractors;
+    private List<FieldDef> fields;
 
     public void setName(String name) {
         this.name = name;
@@ -29,15 +29,15 @@ public class RuleSetFactoryBean implements FactoryBean<DefaultRuleSet> {
         this.outClass = outClass;
     }
 
-    public void setExtractors(List<ValueExtractor> extractors) {
-        this.extractors = extractors;
+    public void setFields(List<FieldDef> fields) {
+        this.fields = fields;
     }
 
     @Override
     public DefaultRuleSet getObject() throws Exception {
         RuleSetBuilder builder = RuleSetBuilder.singleRuleSet(name, inClass, outClass);
-        for (ValueExtractor extractor : extractors) {
-            builder.addField("", extractor, 1);
+        for (FieldDef fieldDef : fields) {
+            builder.addField("", fieldDef.create(), fieldDef.getRank());
         }
         return builder.build();
     }

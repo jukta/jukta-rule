@@ -1,4 +1,4 @@
-package com.jukta.rule.core.impl;
+package com.jukta.rule.core.extractor;
 
 import com.jukta.rule.core.ValueExtractor;
 import de.odysseus.el.ExpressionFactoryImpl;
