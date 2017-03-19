@@ -6,21 +6,27 @@
             elementFormDefault="qualified"
             attributeFormDefault="unqualified">
 
-    <xsd:element name="field">
-        <xsd:complexType>
-            <xsd:attribute name="exp" use="optional" type="xsd:string"/>
-            <xsd:attribute name="mapKey" use="optional" type="xsd:string"/>
-            <xsd:attribute name="listIndex" use="optional" type="xsd:int"/>
-            <xsd:attribute name="extractorRef" use="optional" type="xsd:string"/>
-            <xsd:attribute name="type" use="optional" type="xsd:string"/>
-            <xsd:attribute name="rank" use="optional" type="xsd:int"/>
-        </xsd:complexType>
-    </xsd:element>
 
-    <xsd:element name="singleRule">
+    <xsd:complexType name="Field">
+        <xsd:attribute name="exp" use="optional" type="xsd:string"/>
+        <xsd:attribute name="mapKey" use="optional" type="xsd:string"/>
+        <xsd:attribute name="listIndex" use="optional" type="xsd:int"/>
+        <xsd:attribute name="extractorRef" use="optional" type="xsd:string"/>
+        <xsd:attribute name="type" use="optional" type="xsd:string"/>
+        <xsd:attribute name="rank" use="optional" type="xsd:int"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="Factory">
+        <xsd:attribute name="ref" use="required" type="xsd:string"/>
+    </xsd:complexType>
+
+
+    <xsd:element name="singleRuleSet">
         <xsd:complexType>
             <xsd:choice minOccurs="0" maxOccurs="unbounded">
-                <xsd:element ref="field"/>
+                <xsd:element name="field" type="Field"/>
+                <xsd:element name="initialResultFactory" type="Factory"/>
+                <xsd:element name="resultFactory" type="Factory"/>
             </xsd:choice>
             <xsd:attribute name="id" type="xsd:ID"/>
             <!--<xsd:attribute name="name" use="required" type="xsd:string"/>-->

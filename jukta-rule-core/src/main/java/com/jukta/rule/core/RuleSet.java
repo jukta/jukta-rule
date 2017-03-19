@@ -7,4 +7,8 @@ public interface RuleSet<I, O> {
 
     O eval(I i);
 
+    public Class<I> getInType();
+
+    public Class<O> getOutType();
+
 }

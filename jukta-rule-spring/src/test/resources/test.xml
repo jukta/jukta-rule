@@ -16,11 +16,14 @@
         <beans:constructor-arg name="valueType" value="java.lang.String"/>
     </beans:bean>
 
-    <rule:singleRule id="qwe" inClass="java.lang.String" outClass="java.lang.String">
-        <rule:field exp="${in}" type="java.lang.String" rank="1"/>
-        <rule:field mapKey="hello" type="java.lang.String" rank="0"/>
-        <rule:field listIndex="0" type="java.lang.String" rank="2"/>
-        <rule:field extractorRef="customExtractor" rank="3"/>
-    </rule:singleRule>
+    <rule:singleRuleSet id="qwe" inClass="Model" outClass="java.lang.String">
+        <rule:field exp="${in.str}" type="java.lang.String" rank="2"/>
+        <rule:field exp="${in.i}" type="java.lang.Integer" rank="1"/>
+        <!--<rule:field mapKey="hello" type="java.lang.String" rank="0"/>-->
+        <!--<rule:field listIndex="0" type="java.lang.String" rank="2"/>-->
+        <!--<rule:field extractorRef="customExtractor" rank="3"/>-->
+        <!--<rule:initialResultFactory ref=""/>-->
+        <!--<rule:resultFactory ref=""/>-->
+    </rule:singleRuleSet>
 
 </beans:beans>

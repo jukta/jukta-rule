@@ -9,7 +9,7 @@ public class ComponentNamespaceHandler extends NamespaceHandlerSupport {
 
     @Override
     public void init() {
-        registerBeanDefinitionParser("singleRule", new ComponentBeanDefinitionParser());
+        registerBeanDefinitionParser("singleRuleSet", new ComponentBeanDefinitionParser());
     }
 
 }

@@ -13,6 +13,7 @@
 
     <properties>
         <juel.version>2.2.7</juel.version>
+        <jackson.version>2.8.7</jackson.version>
     </properties>
 
     <dependencies>
@@ -25,6 +26,16 @@
             <groupId>de.odysseus.juel</groupId>
             <artifactId>juel-impl</artifactId>
             <version>${juel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
