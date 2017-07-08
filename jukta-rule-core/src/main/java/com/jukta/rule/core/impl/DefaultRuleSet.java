@@ -6,7 +6,6 @@ import com.jukta.rule.core.RuleSet;
 import com.jukta.rule.core.ValueExtractor;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -21,6 +20,7 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
     private Class<O> outType;
     private ResultFactory<I, O> initialFactory;
     private List<Integer> ranks;
+    private DefaultRulesContainer<I> container = new DefaultRulesContainer<>();
 
     public DefaultRuleSet(List<ValueExtractor<I, ?>> extractors, List<Integer> ranks, Class<I> inType, Class<O> outType) {
         if (extractors.size() != ranks.size()) {
@@ -81,8 +81,7 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
                 joiner.add(r.toString());
             }
             throw new AmbiguousRulesException("Ambiguous rules: " + joiner.toString());
-        }
-        if (res.size() != 1) {
+        } else if (res.size() != 1) {
             return null;
         }
         Rule<I, O> rule = res.get(0);
@@ -114,21 +113,14 @@ public class DefaultRuleSet<I, O> implements RuleSet<I, O> {
     }
 
     protected List<Rule<I, O>> filter(I i) {
-        int size = extractors.size();
-        List<Rule<I, O>> r = new ArrayList<>(rules);
-        for (int j = 0; j < size; j++) {
-            ValueExtractor<I, ?> extractor = extractors.get(j);
-            Object o = extractor.extract(i);
-
-            for (Iterator<Rule<I, O>> it = r.iterator(); it.hasNext(); ) {
-                Rule<I, O> rule = it.next();
-                List<Predicate> p = rule.getPredicates();
-                if (!p.get(j).eval(o)) {
-                    it.remove();
-                }
-            }
+        List<Object> values = new ArrayList<>(extractors.size());
+        for (ValueExtractor<I, ?> extractor : extractors) {
+            values.add(extractor.extract(i));
         }
-        return r;
+        EvalContext<I, O> context = new EvalContext<>(rules, values, i);
+
+        container.eval(context);
+        return context.getResult();
     }
 
 
