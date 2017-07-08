@@ -8,6 +8,7 @@ import javax.el.ExpressionFactory;
 import javax.el.ValueExpression;
 
 /**
+ * Applies EL expression and returns result as output value. Input object is put to EL context with 'in' variable name.
  * @since 1.0
  */
 public class SimpleJuelResultFactory<I,O> implements ResultFactory<I,O> {

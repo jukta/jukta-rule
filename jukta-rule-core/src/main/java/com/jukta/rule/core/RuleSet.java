@@ -5,10 +5,21 @@ package com.jukta.rule.core;
  */
 public interface RuleSet<I, O> {
 
+    /**
+     * Applies rule set to input object and build output
+     * @param i input object
+     * @return output object
+     */
     O eval(I i);
 
-    public Class<I> getInType();
+    /**
+     * @return type of input object
+     */
+    Class<I> getInType();
 
-    public Class<O> getOutType();
+    /**
+     * @return type of output object
+     */
+    Class<O> getOutType();
 
 }

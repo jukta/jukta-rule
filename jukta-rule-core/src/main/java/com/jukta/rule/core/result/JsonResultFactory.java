@@ -9,6 +9,8 @@ import javax.el.ExpressionFactory;
 import javax.el.ValueExpression;
 
 /**
+ * Executes EL expression to build output object. Input and output objects are put into EL context with 'in' and 'out' variable names.
+ * Result of EL expression must be String in JSON format which will be deserialized to java object.
  * @since 1.0
  */
 public class JsonResultFactory<I,O> implements ResultFactory<I,O> {

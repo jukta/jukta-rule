@@ -8,6 +8,9 @@ import javax.el.ExpressionFactory;
 import javax.el.ValueExpression;
 
 /**
+ * Uses two EL expressions 'fieldExp' and 'valueExp'. First expression points to field of input object, this field will be set to result of second expression.
+ * Input and output objects are put into EL context with 'in' and 'out' variable names.
+ * Example: fieldExp=${out.city} valueExp=${'New York'}, field city of output object is set to 'New York'
  * @since 1.0
  */
 public class JuelResultFactory<I,O> implements ResultFactory<I,O> {
